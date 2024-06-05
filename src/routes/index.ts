@@ -29,7 +29,7 @@ router.post("/signin" , async(req : Request , res :Response) =>{
             userId : existingUser.id,
         } , JWT_SECRET);
     
-    res.json({ token });
+     return res.json({ token });
     }
     const user = await prismaClient.user.create({
         data :{

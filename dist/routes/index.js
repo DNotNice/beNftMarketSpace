@@ -37,7 +37,7 @@ router.post("/signin", (req, res) => __awaiter(void 0, void 0, void 0, function*
         const token = jsonwebtoken_1.default.sign({
             userId: existingUser.id,
         }, config_1.JWT_SECRET);
-        res.json({ token });
+        return res.json({ token });
     }
     const user = yield prismaClient.user.create({
         data: {

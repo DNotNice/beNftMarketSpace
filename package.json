@@ -9,6 +9,9 @@
   "author": "Devansh Pandey",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.590.0",
+    "@aws-sdk/s3-presigned-post": "^3.591.0",
+    "@aws-sdk/s3-request-presigner": "^3.590.0",
     "@prisma/client": "^5.15.0",
     "@solana/web3.js": "^1.92.1",
     "@types/express": "^4.17.21",
