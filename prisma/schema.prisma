@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+ 
+  id        Int       @id @default(autoincrement())
+  address   String    @unique
+  createdAt DateTime  @default(now())
+  assets    Asset[]
+  transactionsSold   Transaction[] @relation("seller")
+  transactionsBought Transaction[] @relation("buyer")
+
+}
+
+model Asset {
+
+  id            Int          @id @default(autoincrement())
+  user          User         @relation(fields: [userId], references: [id])
+  userId        Int
+  name          String
+  description   String?
+  price         Float
+  status        AssetStatus  @default(AVAILABLE)
+  createdAt     DateTime     @default(now())
+  transaction   Transaction? @relation(fields: [transactionId], references: [id])
+  transactionId Int?         @unique
+
+}
+
+model Transaction {
+
+  id               Int         @id @default(autoincrement())
+  asset            Asset?       
+  assetId          Int?        @unique
+  seller           User        @relation("seller", fields: [sellerId], references: [id])
+  sellerId         Int
+  buyer            User        @relation("buyer", fields: [buyerId], references: [id])
+  buyerId          Int
+  amount           Float
+  transactionHash  String      @unique
+  status           TransactionStatus @default(PENDING)
+  createdAt        DateTime    @default(now())
+
+  
+}
+enum AssetStatus {
+  AVAILABLE
+  SOLD
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
