@@ -29,7 +29,7 @@ router.get("/preSignedUrl", middlewares_1.authMiddleware, (req, res) => __awaite
         Bucket: config_1.BucketName !== null && config_1.BucketName !== void 0 ? config_1.BucketName : "",
         Key: `${userId}/${Math.random()}/image.jpg`,
         Conditions: [
-            ['content-length-range', 0, 5 * 1024 * 1024] // 5 MB max
+            ['content-length-range', 0, 100 * 1024 * 1024] // 100 MB max
         ],
         Expires: 3600
     });

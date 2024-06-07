@@ -26,7 +26,7 @@ router.get("/preSignedUrl" , authMiddleware , async (req : Request , res : Respo
         Bucket: BucketName ?? "",
         Key: `${userId}/${Math.random()}/image.jpg`,
         Conditions: [
-          ['content-length-range', 0, 5 * 1024 * 1024] // 5 MB max
+          ['content-length-range', 0, 100 * 1024 * 1024] // 100 MB max
         ],
         Expires: 3600
     })
