@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.get("/" ,(req : Request ,res : Response)=>{res.send('cors enabled');})
 app.use("/" ,commonRouter)
-app.use("/v1/sell" , sellRoutes)
-app.use("v1/buy" , buyRoutes)
+app.use("/v1/sell" , sellRoutes)    
+app.use("/v1/buy" , buyRoutes)
 
 app.listen(port , ()=>{console.log(`Server running on ${port}`)});

@@ -16,5 +16,5 @@ app.use(express_1.default.urlencoded({ extended: true }));
 app.get("/", (req, res) => { res.send('cors enabled'); });
 app.use("/", index_1.default);
 app.use("/v1/sell", sellRoutes_1.default);
-app.use("v1/buy", buyRoutes_1.default);
+app.use("/v1/buy", buyRoutes_1.default);
 app.listen(config_1.port, () => { console.log(`Server running on ${config_1.port}`); });
